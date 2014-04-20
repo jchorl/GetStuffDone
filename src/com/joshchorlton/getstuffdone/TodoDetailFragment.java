@@ -5,6 +5,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.CheckBox;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.joshchorlton.getstuffdone.data.DatabaseHandler;
@@ -28,6 +31,9 @@ public class TodoDetailFragment extends Fragment {
 	private Todo mItem;
 	
 	private TextView textContent;
+	private CustomCalendarView calView;
+	private CheckBox completeBox;
+	private RatingBar priorityBar;
 	
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -57,8 +63,29 @@ public class TodoDetailFragment extends Fragment {
 		if (mItem != null) {
 			textContent = ((TextView) rootView.findViewById(R.id.textContent));
             textContent.setText(mItem.content);
+            if(!mItem.content.equals("")){
+            	this.getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+            }
+            calView= ((CustomCalendarView) rootView.findViewById(R.id.calendarView));
+            if(!mItem.date.equals("")){
+            	calView.setDate(Long.parseLong(mItem.date));
+            }
+            completeBox= ((CheckBox) rootView.findViewById(R.id.completeBox));
+            if(mItem.complete.equals("")){
+            	completeBox.setChecked(false);
+            }
+            else{
+            	completeBox.setChecked(mItem.complete.equals("true"));
+            }
+            priorityBar= ((RatingBar) rootView.findViewById(R.id.priorityPicker));
+            if(mItem.priority.equals("")){
+            	 priorityBar.setProgress(1);
+            }
+            else{
+            	priorityBar.setProgress(Integer.parseInt(mItem.priority));
+            }
+            
 		}
-
 		return rootView;
 	}
 	
@@ -71,6 +98,9 @@ public class TodoDetailFragment extends Fragment {
     private void updateTodoFromUI() {
         if (mItem != null && DatabaseHandler.getInstance(getActivity()).getTodo(mItem.id)!=null) {
             mItem.content = textContent.getText().toString();
+            mItem.date= Long.toString(calView.getDate());
+            mItem.complete = String.valueOf(completeBox.isChecked());
+            mItem.priority = Integer.toString(priorityBar.getProgress());
             DatabaseHandler.getInstance(getActivity()).putTodo(mItem);
         }
     }

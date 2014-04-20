@@ -57,8 +57,8 @@
             android:textColor="#ff707070"
             android:textSize="18sp" />
 
-        <CalendarView
-            android:id="@+id/datePicker"
+        <com.joshchorlton.getstuffdone.CustomCalendarView
+            android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="389dp" />
 
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:max="3"
                 android:numStars="3"
-                android:rating="1"
+                android:rating="3"
                 android:stepSize="1" />
 
         </LinearLayout>

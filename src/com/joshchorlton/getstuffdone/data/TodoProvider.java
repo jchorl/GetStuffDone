@@ -45,15 +45,13 @@ public class TodoProvider extends ContentProvider {
 	}
 
 	@Override
-	public Cursor query(Uri uri, String[] projection, String selection,
-			String[] selectionArgs, String sortOrder) {
+	public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
 		Cursor result = null;
 		if (URI_TODOS.equals(uri)) {
 			result = DatabaseHandler
 					.getInstance(getContext())
 					.getReadableDatabase()
-					.query(Todo.TABLE_NAME, Todo.FIELDS, null, null, null,
-							null, null, null);
+					.query(Todo.TABLE_NAME, Todo.FIELDS, null, null, null, null, null, null);
 			result.setNotificationUri(getContext().getContentResolver(), URI_TODOS);
 		}
 		else if (uri.toString().startsWith(TODO_BASE)) {
