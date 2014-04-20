@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
@@ -25,7 +25,68 @@
             android:inputType="textCapSentences"
             android:textColor="#ff222222"
             android:textSize="20sp" />
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="sans-serif-light"
+                android:paddingTop="0dp"
+                android:text="Complete:"
+                android:textColor="#ff707070"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/completeBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="sans-serif-light"
+            android:text="Due date:"
+            android:textColor="#ff707070"
+            android:textSize="18sp" />
+
+        <CalendarView
+            android:id="@+id/datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="389dp" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:fontFamily="sans-serif-light"
+                android:paddingTop="15dp"
+                android:text="Priority:"
+                android:textColor="#ff707070"
+                android:textSize="18sp" />
+
+            <RatingBar
+                android:id="@+id/priorityPicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="3"
+                android:numStars="3"
+                android:rating="1"
+                android:stepSize="1" />
+
+        </LinearLayout>
         
     </LinearLayout>
 
